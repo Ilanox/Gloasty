@@ -44,22 +44,21 @@ module.exports = {
 					]),
 			);
 
-        const help = new Discord.MessageEmbed()
+        const settings = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setTitle('Gloasty - Settings')
         .setDescription(
-            "Hello, Welcome to the settings menu on Gloasty\n" +
+            "Hello and Welcome to the settings menu on Gloasty\n" +
             "You can choose what setting you want to change!\n\n" +
             "**Channels** - Change the settings that related to channels, like Logs and stuff like that.\n\n" +
             "**XP System** - Change the Rate for the XP System, also change add blacklist channels and things like that.\n\n" + 
             "**Role Prefix** - Add custom prefix for every role, Like ``OW | <name>``."
         )
-        .setThumbnail(client.user.displayAvatarURL())
         .setFooter('Gloasty - By Ilanøx', client.user.displayAvatarURL());
 
         interaction.reply({
             ephemeral: false,
-            embeds: [help],
+            embeds: [settings],
             components: [row]
         })
 	}
