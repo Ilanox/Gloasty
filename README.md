@@ -10,6 +10,8 @@ Come with Moderation System, Logs System and Music System
 
 ## Examples
 
+**Settings System:**
+
 ![Settings System](https://cdn.discordapp.com/attachments/908015611601358880/908803939665846272/unknown.png)
 
 
