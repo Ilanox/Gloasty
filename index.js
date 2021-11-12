@@ -5,6 +5,26 @@ const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('./config.json
 
 const client = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
 
+
+const commandMap = {}
+
+const eventFiles = readdirSync('./events').filter(file => file.endsWith('.js'));
+
+function getRandomInt(min, max) {
+  return min + Math.floor(Math.random() * (max - min + 1));
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------
+
+for (const file of eventFiles) {
+  const event = require(`./events/${file}`);
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args, client));
+  } else {
+    client.on(event.name, (...args) => event.execute(...args, client));
+  }
+}
+
 client.on("ready", () => {
 
     function sleep(ms) {
@@ -67,14 +87,28 @@ client.on("ready", () => {
   
     async function Status() {
         while(true) {
-            client.user.setActivity("Gloasty bot | by Ilanøx"); 
+            client.user.setActivity("Gloasty | by Edvin Studios"); 
             await sleep(30000)
-            client.user.setActivity("Gloasty bot | /help"); 
+            client.user.setActivity("Gloasty | /help"); 
             await sleep(30000)
         }
     } Status()
 
   
 });
+
+client.on('interactionCreate', async (interaction) => {
+  if (interaction.isSelectMenu()) {
+    console.log(interaction)
+    return
+  } else if (interaction.isCommand()) {
+    console.log(interaction)
+
+    let cmd = commandMap[interaction.commandName]
+    if (cmd) {
+      cmd.run(interaction, client)
+    }
+  }
+})
 
 client.login(token);
