@@ -10,7 +10,9 @@ Come with Moderation System, Logs System and Music System
 
 ## Examples
 
-![Punish System](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+**Settings System:**
+
+![Settings System](https://cdn.discordapp.com/attachments/908015611601358880/908803939665846272/unknown.png)
 
 
 
