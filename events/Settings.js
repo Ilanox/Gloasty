@@ -52,6 +52,8 @@ module.exports = {
             components: [row]
         })
 
+        interaction.message.delete()
+
             }
         } else if (interaction.customId === "channels_1") {
             if (interaction.values[0] == "logs") {
@@ -60,14 +62,16 @@ module.exports = {
                 .setTitle('Step 2 - Logs Channel')
                 .setDescription(
                     "So you chose to change the logs channel!\n\n" +
-                    "**__Please mention your new logs channel, you have 60 seconds!__**"
+                    "**__Please mention your new logs channel, you have 30 seconds!__**"
                 )
                 .setFooter('Gloasty - By Ilanøx | ID: ' + interaction.member.id, client.user.displayAvatarURL());
         
                 interaction.reply({
                     ephemeral: false,
-                    embeds: [step2]
+                    embeds: [step2],
                 })
+
+                interaction.message.delete()
             }
         }
     }

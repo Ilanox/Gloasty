@@ -15,7 +15,7 @@ module.exports = {
             { 
             name: 'Utilities',
             value: 
-                "**/help** - Check the commands and the usage of Gloasty.\n" + 
+                "**/help** - Check the commands and the usage of Gloasty. \n" + 
                 "**/game** - Use discord games in your voice channel."
             },
             { 

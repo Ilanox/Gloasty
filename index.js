@@ -20,7 +20,7 @@ for (const file of eventFiles) {
   const event = require(`./events/${file}`);
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args, client));
-  } else {
+  } else {  
     client.on(event.name, (...args) => event.execute(...args, client));
   }
 }
@@ -36,7 +36,7 @@ client.on("ready", () => {
     const dbOptions = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      autoIndex: false,
+      autoIndex: false, 
       reconnectTries: Number.MAX_VALUE,
       reconnectInterval: 500,
       poolSize: 5,
@@ -99,10 +99,8 @@ client.on("ready", () => {
 
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isSelectMenu()) {
-    console.log(interaction)
     return
   } else if (interaction.isCommand()) {
-    console.log(interaction)
 
     let cmd = commandMap[interaction.commandName]
     if (cmd) {

@@ -41,6 +41,11 @@ module.exports = {
 							description: 'Add custom prefix for every role.',
 							value: 'role_prefix_1',
 						},
+                        {
+							label: 'Systems',
+							description: 'Disable and enable bot systems.',
+							value: 'systems_1',
+						},
 					]),
 			);
 
@@ -52,7 +57,8 @@ module.exports = {
             "You can choose what setting you want to change!\n\n" +
             "**Channels** - Change the settings that related to channels, like Logs and stuff like that.\n\n" +
             "**XP System** - Change the Rate for the XP System, also change add blacklist channels and things like that.\n\n" + 
-            "**Role Prefix** - Add custom prefix for every role, Like ``OW | <name>``."
+            "**Role Prefix** - Add custom prefix for every role, Like ``OW | <name>``.\n\n" +
+            "**Systems** - Disable and enable bot systems."
         )
         .setFooter('Gloasty - By Ilanøx', client.user.displayAvatarURL());
 
