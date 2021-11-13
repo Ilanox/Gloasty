@@ -12,7 +12,7 @@ Come with Moderation System, Logs System and Music System
 
 **Settings System:**
 
-![Settings System](https://cdn.discordapp.com/attachments/908015611601358880/908803939665846272/unknown.png)
+![Settings System](https://cdn.discordapp.com/attachments/909096962115108915/909152705820381254/unknown.png)
 
 
 
