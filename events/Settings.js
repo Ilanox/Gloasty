@@ -46,13 +46,11 @@ module.exports = {
         )
         .setFooter('Gloasty - By Ilanøx', client.user.displayAvatarURL());
 
-        interaction.reply({
+        interaction.update({
             ephemeral: false,
             embeds: [step1],
             components: [row]
         })
-
-        interaction.message.delete()
 
             }
         } else if (interaction.customId === "channels_1") {
@@ -70,8 +68,20 @@ module.exports = {
                     ephemeral: false,
                     embeds: [step2],
                 })
-
-                interaction.message.delete()
+            } else if (interaction.values[0] == "welcome") {
+                const step2 = new Discord.MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle('Step 2 - Welcome Channel')
+                .setDescription(
+                    "So you chose to change the welcome channel!\n\n" +
+                    "**__Please mention your new welcome channel, you have 30 seconds!__**"
+                )
+                .setFooter('Gloasty - By Ilanøx | ID: ' + interaction.member.id, client.user.displayAvatarURL());
+        
+                interaction.reply({
+                    ephemeral: false,
+                    embeds: [step2],
+                })
             }
         }
     }

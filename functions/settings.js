@@ -1,17 +1,25 @@
 const settings = require('../Schema/settings.js')
 
-async function setQueue1(channelID, link, skip, time) {
-    await Queue1.updateMany(
+async function setLogChannel(GuildID, LogID) {
+    await settings.updateMany(
         { 
-        clientID: "889899959346925638"
+        GuildID: GuildID
         },
         {
-         channelID: channelID,
-         skip: skip,
-         songURL: link,
-         time: time,
+            LogsChannel: LogID
         }
     )
 }
 
-module.exports = { setQueue1, };
+async function setWelcomeChannel(GuildID, WelcomeID) {
+    await settings.updateMany(
+        { 
+        GuildID: GuildID
+        },
+        {
+            WelcomeChannel: WelcomeID
+        }
+    )
+}
+
+module.exports = { setLogChannel, setWelcomeChannel };
