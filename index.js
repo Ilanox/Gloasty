@@ -8,7 +8,7 @@ const client = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'G
 
 const commandMap = {}
 
-const eventFiles = readdirSync('./events').filter(file => file.endsWith('.js'));
+
 
 function getRandomInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
@@ -16,14 +16,19 @@ function getRandomInt(min, max) {
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
+readdirSync("./events/").forEach(dir => {
+      
+  const eventFiles = readdirSync(`./events/${dir}/`).filter(file => file.endsWith(".js"));
+
 for (const file of eventFiles) {
-  const event = require(`./events/${file}`);
+  const event = require(`./events/${dir}/${file}`);
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args, client));
   } else {  
     client.on(event.name, (...args) => event.execute(...args, client));
   }
 }
+})
 
 client.on("ready", () => {
 

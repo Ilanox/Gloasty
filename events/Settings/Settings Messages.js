@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const Mongoose = require('mongoose')
-const { setLogChannel, setWelcomeChannel } = require('../functions/settings.js')
+const { setLogChannel, setWelcomeChannel } = require('../../functions/settings.js')
 
 module.exports = {
 	name: 'messageCreate',
@@ -20,6 +20,7 @@ module.exports = {
         .then(messageMappings => {
         let messages = Array.from(messageMappings.values());
         const previousMessage = messages[1];
+        if(!previousMessage) return
 
         if (!previousMessage.embeds[0]) return
         if (!previousMessage.author.id == "770955559855456256") return
