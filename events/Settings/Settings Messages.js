@@ -6,6 +6,7 @@ module.exports = {
 	name: 'messageCreate',
 	async execute(message, client) {
 
+        if(message.stickers.size == 1) return
         
         const CLientMember = await message.guild.members.cache.get(client.user.id)
         if(!CLientMember.permissions.has(Discord.Permissions.FLAGS.SEND_MESSAGES)) return message.reply("Error x403: The client is missing Permissions! Missing: ``SEND_MESSAGE``")
