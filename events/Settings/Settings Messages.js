@@ -9,6 +9,11 @@ module.exports = {
         if(message.stickers.size == 1) return
         
         const CLientMember = await message.guild.members.cache.get(client.user.id)
+
+        if (message.author.bot) {
+            if (!message.author.id == CLientMember.id) return
+        }
+        
         if(!CLientMember.permissions.has(Discord.Permissions.FLAGS.SEND_MESSAGES)) return message.reply("Error x403: The client is missing Permissions! Missing: ``SEND_MESSAGE``")
         if(!CLientMember.permissions.has(Discord.Permissions.FLAGS.MANAGE_CHANNELS)) return message.reply("Error x403: The client is missing Permissions! Missing: ``MANAGE_CHANNELS``")
         if(!CLientMember.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) return message.reply("Error x403: The client is missing Permissions! Missing: ``MANAGE_GUILD``")
