@@ -6,7 +6,7 @@
 # Gloasty Discord bot
 
 A discord bot for all your uses.\
-Come with Moderation System, Logs System and Music System
+Comes with Moderation System, Logs System and Music System
 
 ## Examples
 
