@@ -67,7 +67,7 @@ async function Warn(user, reason, guild) {
 
             console.log(member)
 
-            member.user.send(`You were warned on the server "**${Guild.name}**". ``Reason: ${reason}```)
+            member.user.send(`You were warned on the server "**${Guild.name}**".\nReason: ${reason}`)
             
         })
         
