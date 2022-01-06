@@ -89,12 +89,12 @@ module.exports = {
 
         async function Spam() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -127,7 +127,7 @@ module.exports = {
                     }
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -147,12 +147,12 @@ module.exports = {
 
         async function Voice() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -185,7 +185,7 @@ module.exports = {
                     }
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -205,12 +205,12 @@ module.exports = {
 
         async function Insult() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -245,7 +245,7 @@ module.exports = {
                     }
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -265,12 +265,12 @@ module.exports = {
 
         async function Advertising() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -303,7 +303,7 @@ module.exports = {
                     } 
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -323,12 +323,12 @@ module.exports = {
 
         async function Raid() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -348,7 +348,7 @@ module.exports = {
                     }
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -368,12 +368,12 @@ module.exports = {
 
         async function Disrespect() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -406,7 +406,7 @@ module.exports = {
                     } 
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -426,12 +426,12 @@ module.exports = {
 
         async function NSFW() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -466,7 +466,7 @@ module.exports = {
                     }
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
@@ -486,12 +486,12 @@ module.exports = {
 
         async function BugAbuse() {
 
-            await UserSc.findOne({UserID: user}, async function (err, docs) {
+            await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
                 if(!docs || docs == null || docs == undefined) {
-                    await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+                    await UserSc.create({GuildID: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
                 }
-                await UserSc.findOne({UserID: user}, async function (err, data) {
+                await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, data) {
 
                     var PunishMap = data.Punishes
                 
@@ -524,7 +524,7 @@ module.exports = {
                     } 
 
                     await UserSc.updateOne(
-                        { UserID: user},
+                        { UserID: user, GuildID: guild},
                         { $set: { Punishes: PunishMap } }
                     )
 
