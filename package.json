@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Ilanox/Gloasty#readme",
   "dependencies": {
-    "discord.js": "^13.3.1",
+    "discord.js": "^13.5.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
