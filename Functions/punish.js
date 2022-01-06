@@ -39,6 +39,10 @@ async function Kick(user, reason, guild) {
 
 async function Warn(user, reason, guild) {
 
+    var Guild = await client.guilds.cache.get(guild)
+
+    var member = await Guild.members.cache.get(user)
+
     await UserSc.findOne({UserID: user}, async function (err, docs) {
 
         if(!docs || docs == null || docs == undefined) {
@@ -58,6 +62,8 @@ async function Warn(user, reason, guild) {
                 { UserID: user},
                 { $set: { Warns: WarnsMap } }
             )
+
+            member.user.send(`You were warned on the server "**${Guild.name}**". ``Reason: ${reason}```)
             
         })
         
