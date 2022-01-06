@@ -63,6 +63,10 @@ async function Warn(user, reason, guild) {
                 { $set: { Warns: WarnsMap } }
             )
 
+            console.log(Guild)
+
+            console.log(member)
+
             member.user.send(`You were warned on the server "**${Guild.name}**". ``Reason: ${reason}```)
             
         })
