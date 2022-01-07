@@ -18,7 +18,7 @@ async function Ban(user, time, reason, guild) {
 
     var member = await Guild.members.cache.get(user)
 
-    if(time == "infinity") {
+    if (time == "infinity") {
         member.ban({ reason: reason })
     } else {
         member.ban({ time, reason })
@@ -45,13 +45,13 @@ async function Warn(user, reason, guild) {
 
     await UserSc.findOne({UserID: user}, async function (err, docs) {
 
-        if(!docs || docs == null || docs == undefined) {
+        if (!docs || docs == null || docs == undefined) {
             await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
         }
         await UserSc.findOne({UserID: user}, async function (err, data) {
 
             var WarnsMap = data.Warns
-            if(!WarnsMap.get(reason)) {
+            if (!WarnsMap.get(reason)) {
                 WarnsMap.set(reason, 1)
             } else {
                 var reasonNum = parseInt(WarnsMap.get(reason)) + 1 
