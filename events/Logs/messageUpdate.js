@@ -5,11 +5,11 @@ module.exports = {
 	name: 'messageUpdate',
 	async execute(OldMessage, message, client) {
         const info = await settings.find({ GuildID: message.guild.id });
-        if(info[0].LogsChannel == "None") return
+        if (info[0].LogsChannel == "None") return
         NewM = message.content
         OldM = OldMessage.content
-        if(message.content.length > 500) NewM = message.content.substring(0,500) + "..."
-        if(OldMessage.content.length > 500) OldM = OldMessage.content.substring(0,500) + "..."
+        if (message.content.length > 500) NewM = message.content.substring(0,500) + "..."
+        if (OldMessage.content.length > 500) OldM = OldMessage.content.substring(0,500) + "..."
         const messageUpdate = new Discord.MessageEmbed()
         .setColor('BLURPLE')
         .setAuthor(message.author.username + "#" + message.author.discriminator, message.author.displayAvatarURL())
