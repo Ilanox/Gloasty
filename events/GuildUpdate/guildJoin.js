@@ -13,7 +13,8 @@ module.exports = {
             xpRateMin: "5",
             xpRateMax: "25",
             WelcomeChannel: "None",
-            WelcomeImage: "Default"
+            WelcomeImage: "Default",
+            PunishChannel: "None"
         })
 
 

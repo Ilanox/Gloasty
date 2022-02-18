@@ -6,6 +6,7 @@ let Settings = new mongoose.Schema({
     xpRateMin: Number,
     xpRateMax: Number,
     WelcomeChannel: String,
-    WelcomeImage: String
+    WelcomeImage: String,
+    PunishChannel: String
 });
 module.exports = mongoose.model("settings", Settings);
