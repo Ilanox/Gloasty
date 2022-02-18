@@ -30,13 +30,14 @@ for (const file of eventFiles) {
 }
 })
 
-client.on("ready", () => {
+client.on("ready", async () => {
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms)); 
     }
   
   // -----------------------------------------------------------------------------------------------------
+
   
     const dbOptions = {
       useNewUrlParser: true,
@@ -87,8 +88,6 @@ client.on("ready", () => {
       }
       client.guilds.cache.get(testGuild).commands.set(commandss)
     });
-  
-    console.log(commandss)
   
     async function Status() {
         while(true) {

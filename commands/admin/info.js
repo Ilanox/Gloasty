@@ -1,23 +1,35 @@
-const Discord = require('discord.js')
-const settings = require('../../Schema/settings.js')
-const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('../../config.json');
+const Discord = require("discord.js");
+const {mongoPath,token,pkey,botID,testGuild} = require('../../config.json');
 
 module.exports = {
-	name: 'guildCreate',
-	async execute(guild, client) {
+	name: "admin-info",
+	description: "Check things about the bot (Like Guilds and stuff)",
+	category: "Admin",
+	options: [],
+	run: async (interaction, client) => {
 
-        settings.create({
-            GuildID: guild.id,
-            OwnerID: guild.ownerId,
-            LogsChannel: "None",
-            xpRateMin: "5",
-            xpRateMax: "25",
-            WelcomeChannel: "None",
-            WelcomeImage: "Default"
-        })
+for (const [guildID, guild] of client.guilds.cache) {
 
+    let invite = "No invite";
 
-        let channel = await client.channels.cache.get("944213458231099463");
+    const fetch = await guild.invites.fetch().catch(() => undefined);
+
+    if (fetch && fetch.size) {
+        invite = fetch.first().url;
+        continue;
+    }
+
+    for (const [channelID, channel] of guild.channels.cache) {
+
+        if (!invite && channel.createInvite) {
+            const attempt = await channel.createInvite().catch(() => undefined);
+
+            if (attempt) {
+                invite = attempt.url;
+            }
+        }
+    }
+}
 
         async function GuildInfo(guild, channel) {
 
@@ -64,8 +76,14 @@ module.exports = {
 
             channel.send({ embeds: [embed] });
         }
+    
 
-        GuildInfo(guild, channel)
+        if(interaction.user.id != "302904462123466752") return;
 
-    }
+        let channel = await client.channels.cache.get("944213458231099463");
+
+        client.guilds.cache.forEach(guild => {
+            GuildInfo(guild, channel)
+        })
+	}
 }
