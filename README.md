@@ -5,8 +5,7 @@
 
 # Gloasty Discord bot
 
-A discord bot for all your uses.\
-Comes with Moderation System, Logs System and Music System
+Gloasty is a discord bot by Edvin Studios, developed by Ilanox. You can use Gloasty for everything! From Punish System to Music System, The bot also has a Score System, Which can tell if the user is good or bad (Positive is good, negative is bad).
 
 ## Examples
 
