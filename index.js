@@ -88,16 +88,8 @@ client.on("ready", async () => {
       client.application.commands.set(commandss)
     });
   
-    async function Status() {
-        while(true) {
-            client.user.setActivity("Gloasty | by Edvin Studios"); 
-            await sleep(30000)
-            client.user.setActivity("Gloasty | /help"); 
-            await sleep(30000)
-        }
-    } Status()
+    client.user.setActivity("Gloasty | by Edvin Studios");
 
-  
 });
 
 client.on('interactionCreate', async (interaction) => {
