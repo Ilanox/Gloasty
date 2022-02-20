@@ -9,7 +9,7 @@ Gloasty is a discord bot by Edvin Studios, developed by Ilanox. You can use Gloa
 
 ## Examples
 
-**Settings System:**
+**Punish System:**
 
 ![Punish System](https://cdn.discordapp.com/attachments/909096962115108915/944701629775638559/Gloasty_punish.gif)
 
