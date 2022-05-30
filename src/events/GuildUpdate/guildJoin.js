@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const settings = require('../../Schema/settings.js')
-const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('../../config.json');
+const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('../../../config.json');
 
 module.exports = {
 	name: 'guildCreate',

@@ -1,6 +1,6 @@
 const UserSc = require('../Schema/user.js')
 const ms = require('ms')
-const { client } = require("../index.js");
+const { client } = require("../../index.js");
 
 async function Timeout(user, time, reason, guild) {
 

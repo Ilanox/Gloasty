@@ -5,7 +5,7 @@ module.exports = {
 	name: 'messageDelete',
 	async execute(message, client) {
         const info = await settings.find({ GuildID: message.guild.id });
-        if (info[0].LogsChannel == "None") return
+        if (info == null || info[0] == null || info[0].LogsChannel == "None" || info[0].LogsChannel == null) return
         const messageDelete = new Discord.MessageEmbed()
         .setColor('RED')
         .setAuthor(message.author.username + "#" + message.author.discriminator, message.author.displayAvatarURL())

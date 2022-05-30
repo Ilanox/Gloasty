@@ -15,12 +15,12 @@ function getRandomInt(min, max) {
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-readdirSync("./events/").forEach(dir => {
+readdirSync("./src/events/").forEach(dir => {
       
-  const eventFiles = readdirSync(`./events/${dir}/`).filter(file => file.endsWith(".js"));
+  const eventFiles = readdirSync(`./src/events/${dir}/`).filter(file => file.endsWith(".js"));
 
 for (const file of eventFiles) {
-  const event = require(`./events/${dir}/${file}`);
+  const event = require(`./src/events/${dir}/${file}`);
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args, client));
   } else {  
@@ -76,19 +76,19 @@ client.on("ready", async () => {
   
     let commandss = []
   
-    readdirSync("./commands/").forEach(dir => {
+    readdirSync("./src/commands/").forEach(dir => {
       
-      const commandFiles = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith(".js"));
+      const commandFiles = readdirSync(`./src/commands/${dir}/`).filter(file => file.endsWith(".js"));
   
       for (let file of commandFiles) {
-        let c = require(`./commands/${dir}/${file}`)
+        let c = require(`./src/commands/${dir}/${file}`)
         commandMap[c.name] = c
         commandss.push(c)
       }
       client.application.commands.set(commandss)
     });
   
-    client.user.setActivity("Gloasty | by Edvin Studios");
+    client.user.setActivity("Gloasty | by Edvin Studios | Type /help");
 
 });
 

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const {mongoPath,token,pkey,botID,testGuild} = require('../../config.json');
+const {mongoPath,token,pkey,botID,testGuild} = require('../../../config.json');
 
 module.exports = {
 	name: "admin-info",
