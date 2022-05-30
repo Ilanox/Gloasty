@@ -5,7 +5,7 @@ module.exports = {
 	name: 'messageUpdate',
 	async execute(OldMessage, message, client) {
         const info = await settings.find({ GuildID: message.guild.id });
-        if (info[0].LogsChannel == "None") return
+        if (info == null || info[0] == null || info[0].LogsChannel == "None" || info[0].LogsChannel == null) return
         NewM = message.content
         OldM = OldMessage.content
         if (message.content.length > 500) NewM = message.content.substring(0,500) + "..."

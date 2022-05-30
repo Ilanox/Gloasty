@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { Timeout, Ban, Warn, Kick } = require('../../Functions/punish.js')
+const { Timeout, Ban, Warn, Kick } = require('../../functions/punish.js')
 const UserSc = require('../../Schema/user.js')
 const GuildSc = require('../../Schema/settings.js')
 const { Permissions, MessageEmbed } = require("discord.js")
