@@ -21,7 +21,7 @@ module.exports = {
             { 
             name: 'Moderation',
             value: 
-                "**/punish** - Punishes the mentioned user with the appropriate punishment for what you specified.\n" + 
+                "**/punish** - Punishes the mentioned user with the appropriate punishment for the reason you have specified.\n" + 
                 "**/clear** - Clear the messages from the mentioned user.\n" +
                 "**/stats** - Check the stats of the mentioned member." 
             },
