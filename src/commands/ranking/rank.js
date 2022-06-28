@@ -33,7 +33,7 @@ module.exports = {
 
     run: async (interaction, client) => {
 
-        interaction.deferReply({ ephemeral: false })
+        await interaction.deferReply({ ephemeral: false })
         
         try {
             
@@ -121,7 +121,7 @@ module.exports = {
 
             console.log(error);
             interaction.editReply({ content: "```Error 502, Please contant Iłanøx#2006```", ephemeral: false })
-            
+
         }
 
         
