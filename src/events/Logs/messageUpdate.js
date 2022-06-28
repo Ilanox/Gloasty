@@ -8,6 +8,7 @@ module.exports = {
         if (info == null || info[0] == null || info[0].LogsChannel == "None" || info[0].LogsChannel == null) return
         NewM = message.content
         OldM = OldMessage.content
+        if (NewM == OldM) return
         if (message.content.length > 500) NewM = message.content.substring(0,500) + "..."
         if (OldMessage.content.length > 500) OldM = OldMessage.content.substring(0,500) + "..."
         const messageUpdate = new Discord.MessageEmbed()

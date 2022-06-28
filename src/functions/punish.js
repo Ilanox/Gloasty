@@ -43,10 +43,10 @@ async function Warn(user, reason, guild) {
 
     var member = await Guild.members.cache.get(user)
 
-    await UserSc.findOne({UserID: user}, async function (err, docs) {
+    await UserSc.findOne({UserID: user, GuildID: guild}, async function (err, docs) {
 
         if (!docs || docs == null || docs == undefined) {
-            await UserSc.create({Guild: guild, UserID: user, XP: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
+            await UserSc.create({Guild: guild, UserID: user, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map()})
         }
         await UserSc.findOne({UserID: user}, async function (err, data) {
 
