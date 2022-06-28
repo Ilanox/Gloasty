@@ -34,86 +34,97 @@ module.exports = {
     run: async (interaction, client) => {
 
         interaction.deferReply({ ephemeral: false })
+        
+        try {
+            
+            var MemberID;
 
-        var MemberID;
+            var BackgroundImage = new Image();
 
-        var BackgroundImage = new Image();
+            const userOption = interaction.options.get('user');
 
-        const userOption = interaction.options.get('user');
+            if (userOption == null || userOption == undefined) MemberID = interaction.user.id
+            else MemberID = userOption.value
 
-        if (userOption == null || userOption == undefined) MemberID = interaction.user.id
-        else MemberID = userOption.value
+            var userData;
 
-        var userData;
+            await UserSc.findOne({ UserID: MemberID, GuildID: interaction.guild.id }, async function (err, docs) {
 
-        await UserSc.findOne({ UserID: MemberID, GuildID: interaction.guild.id }, async function (err, docs) {
+                if (!docs || docs == null || docs == undefined) {
+                    await RankingSystem.createUser(MemberID, interaction.guild.id)
+                    userData = { GuildID: interaction.guild.id, UserID: MemberID, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
+                    return;
+                }
+                userData = docs
+            });
 
-            if (!docs || docs == null || docs == undefined) {
-                await RankingSystem.createUser(MemberID, interaction.guild.id)
-                userData = { GuildID: interaction.guild.id, UserID: MemberID, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
-                return;
+            var user = client.users.cache.get(MemberID);
+
+            const ImagePath = await RankingSystem.getImagePath(MemberID, interaction.guild.id)
+
+            const canvas = createCanvas(2024, 693);
+            const ctx = canvas.getContext('2d')
+
+            registerFont(path.resolve("./src/Fonts/OpenSans-ExtraBold.ttf"), { family: 'OpenSans-ExtraBold' })
+
+            console.log(user.displayAvatarURL({ format: 'png', dynamic: true, size: 512 }))
+
+            // -=-=-=-=-=-=-=-=-=-=-=-= | Profile Picture and Background | =-=-=-=-=-=-=-=-=-=-=-=-
+
+            const avatarImage = await loadImage(user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }));
+
+            BackgroundImage.onload = function() {
+                ctx.drawImage(avatarImage, 68, 113, 512, 512);
+                ctx.drawImage(BackgroundImage, 0, 0);
             }
-            userData = docs
-        });
 
-        var user = client.users.cache.get(MemberID);
+            BackgroundImage.src = ImagePath;
 
-        const ImagePath = await RankingSystem.getImagePath(MemberID, interaction.guild.id)
+            var fontSize;
 
-        const canvas = createCanvas(2024, 693);
-        const ctx = canvas.getContext('2d')
+            // -=-=-=-=-=-=-=-=-=-=-=-= | Username TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
 
-        registerFont(path.resolve("./src/Fonts/OpenSans-ExtraBold.ttf"), { family: 'OpenSans-ExtraBold' })
+            ctx.font = "128px OpenSans-ExtraBold";
+            ctx.fillStyle = "#8BA5FF";
+            if(ctx.measureText(user.tag).width >= 800) fontSize = (800 / ctx.measureText(user.tag).width) * 128
+            else fontSize = 128
+            ctx.font = fontSize + "px OpenSans-ExtraBold";
+            ctx.fillText(user.tag, 595, 260)
 
-        console.log(user.displayAvatarURL({ format: 'png', dynamic: true, size: 512 }))
+            // -=-=-=-=-=-=-=-=-=-=-=-= | Rank TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
 
-        // -=-=-=-=-=-=-=-=-=-=-=-= | Profile Picture and Background | =-=-=-=-=-=-=-=-=-=-=-=-
+            var Rank = "#" + await RankingSystem.FindPositionByStars(MemberID, interaction.guild.id)
 
-        const avatarImage = await loadImage(user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }));
+            ctx.font = "62px OpenSans-ExtraBold";
+            ctx.fillStyle = "#AEAEAE";
+            if(ctx.measureText(Rank).width >= 112) fontSize = (112 / ctx.measureText(Rank).width) * 62
+            else fontSize = 62;
+            ctx.font = fontSize + "px OpenSans-ExtraBold";
+            ctx.fillText(Rank, 777, 325)
 
-        BackgroundImage.onload = function() {
-            ctx.drawImage(avatarImage, 68, 113, 512, 512);
-            ctx.drawImage(BackgroundImage, 0, 0);
+            // -=-=-=-=-=-=-=-=-=-=-=-= | Rank TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
+
+            var Level = userData.Level
+
+            ctx.font = "62px OpenSans-ExtraBold";
+            ctx.fillStyle = "#AEAEAE";
+            if(ctx.measureText(Level).width >= 108) fontSize = (108 / ctx.measureText(Level).width) * 62
+            else fontSize = 62;
+            ctx.font = fontSize + "px OpenSans-ExtraBold";
+            ctx.fillText(Level, 1126, 325)
+
+            const attachment = new Discord.MessageAttachment(canvas.toBuffer('image/png'), 'rank.png');
+
+            interaction.editReply({ files: [ attachment ], ephemeral: false })
+            
+        } catch(error) {
+
+            console.log(error);
+            interaction.editReply({ content: "```Error 502, Please contant Iłanøx#2006```", ephemeral: false })
+            
         }
 
-        BackgroundImage.src = ImagePath;
-
-        var fontSize;
-
-        // -=-=-=-=-=-=-=-=-=-=-=-= | Username TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
-
-        ctx.font = "128px OpenSans-ExtraBold";
-        ctx.fillStyle = "#8BA5FF";
-        if(ctx.measureText(user.tag).width >= 800) fontSize = (800 / ctx.measureText(user.tag).width) * 128
-        else fontSize = 128
-        ctx.font = fontSize + "px OpenSans-ExtraBold";
-        ctx.fillText(user.tag, 595, 260)
-
-        // -=-=-=-=-=-=-=-=-=-=-=-= | Rank TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
-
-        var Rank = "#" + await RankingSystem.FindPositionByStars(MemberID, interaction.guild.id)
-
-        ctx.font = "62px OpenSans-ExtraBold";
-        ctx.fillStyle = "#AEAEAE";
-        if(ctx.measureText(Rank).width >= 112) fontSize = (112 / ctx.measureText(Rank).width) * 62
-        else fontSize = 62;
-        ctx.font = fontSize + "px OpenSans-ExtraBold";
-        ctx.fillText(Rank, 777, 325)
-
-        // -=-=-=-=-=-=-=-=-=-=-=-= | Rank TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
-
-        var Level = userData.Level
-
-        ctx.font = "62px OpenSans-ExtraBold";
-        ctx.fillStyle = "#AEAEAE";
-        if(ctx.measureText(Level).width >= 108) fontSize = (108 / ctx.measureText(Level).width) * 62
-        else fontSize = 62;
-        ctx.font = fontSize + "px OpenSans-ExtraBold";
-        ctx.fillText(Level, 1126, 325)
-
-        const attachment = new Discord.MessageAttachment(canvas.toBuffer('image/png'), 'rank.png');
-
-        interaction.editReply({ files: [ attachment ], ephemeral: false })
+        
 
     }
 }
