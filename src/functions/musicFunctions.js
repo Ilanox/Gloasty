@@ -53,4 +53,4 @@ Downloader.prototype.getMP3 = function(track, callback) {
 
 module.exports = {
     Downloader 
-};
+};;

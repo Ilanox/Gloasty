@@ -85,7 +85,7 @@ client.on("ready", async () => {
         commandMap[c.name] = c
         commandss.push(c)
       }
-      client.application.commands.set(commandss)
+      client.guilds.cache.get(testGuild).commands.set(commandss)
     });
   
     client.user.setActivity("Gloasty | by Edvin Studios | Type /help");

@@ -4,7 +4,9 @@ let user = new mongoose.Schema({
     UserID: String,
     Warns: {type: Map, of: String},
     Punishes: {type: Map, of: String},
-    Xp: Number,
-    Level: Number
+    Stars: Number,
+    Level: Number,
+    TotalStars: Number,
+    StoreStars: Number,
 });
 module.exports = mongoose.model("user", user);
