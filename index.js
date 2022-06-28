@@ -86,7 +86,6 @@ client.on("ready", async () => {
         commandss.push(c)
       }
 
-      client.application.commands.set([])
       client.application.commands.set(commandss)
     });
   
