@@ -85,6 +85,8 @@ client.on("ready", async () => {
         commandMap[c.name] = c
         commandss.push(c)
       }
+
+      client.application.commands.set([])
       client.application.commands.set(commandss)
     });
   
