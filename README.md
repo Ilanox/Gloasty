@@ -13,7 +13,9 @@ Gloasty is a discord bot by Edvin Studios, developed by Ilanox. You can use Gloa
 
 ![Punish System](https://cdn.discordapp.com/attachments/909096962115108915/944701629775638559/Gloasty_punish.gif)
 
+**Ranking System:**
 
+![Ranking System](https://user-images.githubusercontent.com/67551361/176484231-14b2b078-b380-4451-b624-d8347f37f5e5.png)
 
 ## License
 
