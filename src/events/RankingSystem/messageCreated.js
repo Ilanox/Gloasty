@@ -30,6 +30,7 @@ module.exports = {
 
         if(RankingSystem.CheckIfGettingStar(userData.Level)) {
             await RankingSystem.AddStars(message.author.id, message.guild.id, 1)
+            console.log("Star added to " + message.author.tag)
         }
 
         if(userData.TotalStars >= RankingSystem.getMaxStarsNextLevel(userData.Level)) {

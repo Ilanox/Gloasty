@@ -27,7 +27,7 @@ module.exports = {
 
                         if (!docs || docs == null || docs == undefined) {
                             await RankingSystem.createUser(VoiceMember.user.id, VoiceMember.guild.id)
-                            userData = { GuildID: VoiceMember.guild.id, UserID: MemberID, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
+                            userData = { GuildID: VoiceMember.guild.id, UserID: VoiceMember.id, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
                         }
                         userData = docs
                     });
@@ -36,6 +36,7 @@ module.exports = {
 
                     if(RankingSystem.CheckIfGettingStar(userData.Level)) {
                         await RankingSystem.AddStars(VoiceMember.user.id, VoiceMember.guild.id, 1)
+                        console.log("Star added to " + VoiceMember.user.tag)
                     }
             
                     if(userData.TotalStars >= RankingSystem.getMaxStarsNextLevel(userData.Level)) {

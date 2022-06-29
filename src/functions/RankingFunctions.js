@@ -17,13 +17,10 @@ function CheckIfGettingStar(level) {
 function getMaxStarsNextLevel(level) {
     var FiveCounter = 0;
     for(var i = 1; i <= level; i++) {
-        console.log(i);
         if(i % 5 == 0) FiveCounter++;
     }
 
     var data;
-
-    console.log((level * 6) + (FiveCounter * 6))
 
     if(level % 5 == 0) data = (level * 6) + (FiveCounter * 6)
 

@@ -97,7 +97,7 @@ module.exports = {
 
             ctx.font = "62px OpenSans-ExtraBold";
             ctx.fillStyle = "#AEAEAE";
-            if(ctx.measureText(Rank).width >= 112) fontSize = (112 / ctx.measureText(Rank).width) * 62
+            if(ctx.measureText(Rank).width >= 98) fontSize = (98 / ctx.measureText(Rank).width) * 62
             else fontSize = 62;
             ctx.font = fontSize + "px OpenSans-ExtraBold";
             ctx.fillText(Rank, 777, 325)
