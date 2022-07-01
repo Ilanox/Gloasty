@@ -14,7 +14,7 @@ module.exports = {
 
                 if(Gloasty.ranking.voice.checkIfEligibleForStar(VoiceMember)) {
 
-                    var userData = Gloasty.user.getUserData(VoiceMember.user.id, VoiceMember.guild.id)
+                    var userData = await Gloasty.user.getUserData(VoiceMember.user.id, VoiceMember.guild.id)
 
                     if (!userData || userData == null || userData == undefined) {
                         await Gloasty.user.createUser(VoiceMember.user.id, VoiceMember.guild.id)
