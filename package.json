@@ -30,6 +30,7 @@
     "passport-discord": "^0.1.4",
     "path": "^0.12.7",
     "request": "^2.88.2",
+    "require-dir": "^1.2.0",
     "shelljs": "^0.8.5",
     "undici": "^5.4.0",
     "youtube-mp3-downloader": "^0.7.10"

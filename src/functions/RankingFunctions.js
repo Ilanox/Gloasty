@@ -1,7 +1,5 @@
 const UserSc = require('../Schema/user.js')
 var path = require("path");
-const fs = require('fs');
-const request = require('request');
 
 const VoiceList = new Map();
 
@@ -247,15 +245,12 @@ async function FindPositionByStars(user, guild) {
 
     for(const i of docs) {
         if(i.UserID == user) {
-            console.log(position)
             userPosition = position;
         } 
         position++;
     }
 
     userPosition = docs.length - userPosition;
-
-    console.log(userPosition)
 
     return userPosition;
 
