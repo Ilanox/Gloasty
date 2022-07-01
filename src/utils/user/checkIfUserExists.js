@@ -1,6 +1,13 @@
 const UserSc = require('../../Schema/user.js')
 var path = require("path");
 
+/**
+ * @name checkIfUserExists
+ * @description Check if the user exist in Gloasty Database
+ * @param {userID} user
+ * @param {guildID} guild
+ */
+
 module.exports = async function (user, guild) {
 
     let bool;

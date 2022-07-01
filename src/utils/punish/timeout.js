@@ -1,6 +1,14 @@
 const UserSc = require('../../Schema/user.js')
-const ms = require('ms')
 const main = require('../../../index')
+
+/**
+ * @name advertising
+ * @description Timeout user from using chat channels
+ * @param {userID} user
+ * @param {ms} time
+ * @param {string} reason
+ * @param {guildID} guild
+ */
 
 module.exports = async function timeout(user, time, reason, guild) {
 

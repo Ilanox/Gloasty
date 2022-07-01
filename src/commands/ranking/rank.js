@@ -53,8 +53,6 @@ module.exports = {
 
             registerFont(path.resolve("./src/Fonts/OpenSans-ExtraBold.ttf"), { family: 'OpenSans-ExtraBold' })
 
-            console.log(user.displayAvatarURL({ format: 'png', dynamic: true, size: 512 }))
-
             // -=-=-=-=-=-=-=-=-=-=-=-= | Profile Picture and Background | =-=-=-=-=-=-=-=-=-=-=-=-
 
             const avatarImage = await loadImage(user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }));

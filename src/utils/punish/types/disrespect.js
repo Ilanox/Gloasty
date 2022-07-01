@@ -9,6 +9,13 @@ const createUser = require('../../user/createUser')
 const getDefaultData = require('../../user/getDefaultData')
 const Punisher = require('../loader')
 
+/**
+ * @name disrespect
+ * @description Punish a user for disrespecting a staff user
+ * @param {userID} user
+ * @param {guildID} guild
+ */
+
 module.exports = async function disrespect(user, guild) {
 
     var data = await getUserData(user, guild)

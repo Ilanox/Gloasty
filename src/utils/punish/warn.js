@@ -1,7 +1,14 @@
 const UserSc = require('../../Schema/user.js')
-const ms = require('ms')
 const main = require('../../../index')
 const userLoader = require('../user/loader')
+
+/**
+ * @name advertising
+ * @description Warn user for particular reason
+ * @param {userID} user
+ * @param {string} reason
+ * @param {guildID} guild
+ */
 
 module.exports = async function warn(user, reason, guild) {
 
