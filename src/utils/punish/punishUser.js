@@ -1,6 +1,14 @@
     
 const Gloasty = require('../../../gloasty')
 
+/**
+ * @name advertising
+ * @description Punish user for specific rule
+ * @param {userID} user
+ * @param {guildID} guild
+ * @param {string} rule
+ */
+
 module.exports = async function (user, guild, rule) {
 
     let level;

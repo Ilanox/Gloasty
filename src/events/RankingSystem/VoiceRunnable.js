@@ -28,6 +28,8 @@ module.exports = {
                         console.log("Star added to " + VoiceMember.user.tag)
                     }
             
+                    console.log(userData.Level)
+
                     console.log("Max Stars for next level for " + VoiceMember.user.tag + " is: " + Gloasty.ranking.getMaxStars(userData.Level))
 
                     if(userData.TotalStars >= Gloasty.ranking.getMaxStars(userData.Level)) {

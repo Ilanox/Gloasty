@@ -1,6 +1,14 @@
 const UserSc = require('../../Schema/user.js')
-const ms = require('ms')
 const main = require('../../../index')
+
+/**
+ * @name advertising
+ * @description Ban a user from the server
+ * @param {userID} user
+ * @param {ms} time
+ * @param {string} reason
+ * @param {guildID} guild
+ */
 
 module.exports = async function ban(user, time, reason, guild) {
 

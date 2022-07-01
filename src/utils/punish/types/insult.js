@@ -9,6 +9,13 @@ const createUser = require('../../user/createUser')
 const getDefaultData = require('../../user/getDefaultData')
 const Punisher = require('../loader')
 
+/**
+ * @name insult
+ * @description Punish a user for insulting other member
+ * @param {userID} user
+ * @param {guildID} guild
+ */
+
 module.exports = async function insult(user, guild) {
 
     

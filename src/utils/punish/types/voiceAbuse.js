@@ -9,6 +9,13 @@ const createUser = require('../../user/createUser')
 const getDefaultData = require('../../user/getDefaultData')
 const Punisher = require('../loader')
 
+/**
+ * @name voiceAbuse
+ * @description Punish a user for abuse of voice channels
+ * @param {userID} user
+ * @param {guildID} guild
+ */
+
 module.exports = async function voiceAbuse(user, guild) {
 
     var data = await getUserData(user, guild)
