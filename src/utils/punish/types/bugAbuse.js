@@ -1,13 +1,13 @@
 const Discord = require("discord.js");
-const Gloasty = require("../../../gloasty.js")
-const UserSc = require('../../Schema/user.js')
-const GuildSc = require('../../Schema/settings.js')
+const Gloasty = require("../../../../gloasty.js")
+const UserSc = require('../../../Schema/user.js')
+const GuildSc = require('../../../Schema/settings.js')
 const { Permissions, MessageEmbed } = require("discord.js")
 
-const getUserData = require('../user/getUserData')
-const createUser = require('../user/createUser')
-const getDefaultData = require('../user/getDefaultData')
-const Punisher = require('../punish/loader')
+const getUserData = require('../../user/getUserData')
+const createUser = require('../../user/createUser')
+const getDefaultData = require('../../user/getDefaultData')
+const Punisher = require('../loader')
 
 module.exports = async function bugAbuse(user, guild) {
 

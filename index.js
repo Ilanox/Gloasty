@@ -5,11 +5,11 @@ const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('./config.json
 
 const client = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
 
-module.exports = { client }
-
 const commandMap = {}
 
+const VoiceList = new Map();
 
+module.exports = { client }
 
 function getRandomInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
