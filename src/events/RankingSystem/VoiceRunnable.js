@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-const RankingSystem = require('../../functions/RankingFunctions.js');
+const RankingSystem = require('../../utils/RankingFunctions.js');
 const UserSc = require('../../Schema/user.js');
 const Gloasty = require('../../../gloasty.js');
 
@@ -46,9 +46,8 @@ module.exports = {
                     }
                     
                 }
-                
-            }
 
+            }
             await sleep(5000);
 
         }

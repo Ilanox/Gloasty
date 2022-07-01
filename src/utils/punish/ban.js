@@ -4,8 +4,6 @@ const main = require('../../../index')
 
 module.exports = async function ban(user, time, reason, guild) {
 
-    console.log(main.client)
-
     var Guild = await main.client.guilds.cache.find(guild)
 
     var member = await Guild.members.cache.get(user)

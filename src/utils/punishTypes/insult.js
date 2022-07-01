@@ -11,6 +11,7 @@ const Punisher = require('../punish/loader')
 
 module.exports = async function insult(user, guild) {
 
+    
     var data = await getUserData(user, guild)
 
     if (!data || data == null || data == undefined) {
