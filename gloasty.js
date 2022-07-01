@@ -1,14 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const { importer } = require('./src/functions/importer.js')
 
-const punish = importer('./src/functions/punish');
-const punishTypes = importer('./src/functions/punishTypes');
-const user = importer("./src/functions/user")
-const ranking = importer('./src/functions/ranking')
+const punish = require('./src/utils/punish/punishHandler')
+const user = require('./src/utils/user/loader')
+const utilities = require('./src/utils/utilities/loader')
 
 module.exports = {
     punish,
-    punishTypes,
-    user
+    user,
+    utilities
 }

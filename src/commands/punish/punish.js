@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const Gloasty = require("../../../gloasty.js")
 const UserSc = require('../../Schema/user.js')
-const punishUser = require('../../functions/punishUser.js')
+const punishUser = require('../../utils/punishUser.js')
 const GuildSc = require('../../Schema/settings.js')
 const { Permissions, MessageEmbed } = require("discord.js")
 
@@ -90,10 +90,9 @@ module.exports = {
         var PunishChannel = Guild.channels.cache.get(PunishChannelID)
 
         const punishInfo = await punishUser(user, guild, rule)
-        console.log(punishInfo)
 
         interaction.reply({
-            content: `> המשתמש <@${interaction.user.id}> העניש את <@${user}> על ${punishInfo.secondReason}, מהסיבה "**${reason}**", המשתמש הוענש על ${punishInfo.secondReason} בדרגה **${punishInfo.level}**`
+            content: `> המשתמש <@${interaction.user.id}> העניש את <@${user}> על ${punishInfo.reason}, מהסיבה "**${reason}**", המשתמש הוענש על ${punishInfo.reason} בדרגה **${punishInfo.level}**`
         })
 
         const punishEmbed = new MessageEmbed()

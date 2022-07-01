@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { Image, createCanvas, loadImage, registerFont } = require('canvas');
-const RankingSystem = require('../../functions/RankingFunctions');
+const RankingSystem = require('../../utils/RankingFunctions');
 const path = require('path');
 const fs = require('fs')
 const request = require('request');

@@ -88,8 +88,8 @@ client.on("ready", async () => {
         commandss.push(c)
       }
 
-      client.guilds.cache.get(testGuild).commands.set([]);
-      client.application.commands.set(commandss)
+      client.guilds.cache.get(testGuild).commands.set(commandss);
+      // client.application.commands.set(commandss)
     });
   
     client.user.setActivity("Gloasty | by Edvin Studios | Type /help");

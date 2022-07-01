@@ -5,8 +5,6 @@ const userLoader = require('../user/loader')
 
 module.exports = async function warn(user, reason, guild) {
 
-    console.log(main.client)
-
     var Guild = await main.client.guilds.cache.get(guild)
 
     var member = await Guild.members.cache.get(user)

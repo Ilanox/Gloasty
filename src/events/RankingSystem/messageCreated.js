@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const RankingSystem = require('../../functions/RankingFunctions.js')
+const RankingSystem = require('../../utils/RankingFunctions.js')
 const UserSc = require('../../Schema/user.js')
 
 module.exports = {
