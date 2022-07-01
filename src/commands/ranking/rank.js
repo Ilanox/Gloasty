@@ -5,18 +5,11 @@ const path = require('path');
 const fs = require('fs')
 const request = require('request');
 const UserSc = require('../../Schema/user.js')
+const Gloasty = require('../../../gloasty.js')
 
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-var download = async function(uri, filename, callback) {
-    request.head(uri, async function(err, res, body) {
-  
-      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-
-    });
-};
 
 module.exports = {
 	name: "rank",
@@ -51,8 +44,8 @@ module.exports = {
             await UserSc.findOne({ UserID: MemberID, GuildID: interaction.guild.id }, async function (err, docs) {
 
                 if (!docs || docs == null || docs == undefined) {
-                    await RankingSystem.createUser(MemberID, interaction.guild.id)
-                    userData = { GuildID: interaction.guild.id, UserID: MemberID, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
+                    await Gloasty.user.createUser(MemberID, interaction.guild.id)
+                    userData = Gloasty.user.getDefaultData(MemberID, interaction.guild.id)
                     return;
                 }
                 userData = docs

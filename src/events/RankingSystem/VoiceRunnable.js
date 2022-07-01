@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 
 const RankingSystem = require('../../functions/RankingFunctions.js');
 const UserSc = require('../../Schema/user.js');
+const Gloasty = require('../../../gloasty.js');
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
