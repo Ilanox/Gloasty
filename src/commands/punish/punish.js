@@ -89,7 +89,8 @@ module.exports = {
         var Guild = await client.guilds.cache.get(guild)
         var PunishChannel = Guild.channels.cache.get(PunishChannelID)
 
-        const punishInfo = punishUser(user, guild, rule)
+        const punishInfo = await punishUser(user, guild, rule)
+        console.log(punishInfo)
 
         interaction.reply({
             content: `> המשתמש <@${interaction.user.id}> העניש את <@${user}> על ${punishInfo.secondReason}, מהסיבה "**${reason}**", המשתמש הוענש על ${punishInfo.secondReason} בדרגה **${punishInfo.level}**`
