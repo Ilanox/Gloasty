@@ -15,7 +15,7 @@ module.exports = {
         if (message.author.bot) return
         if (message.channel.type == "dm") return
 
-        var userData = Gloasty.user.getUserData(message.author.id, message.guild.id)
+        var userData = await Gloasty.user.getUserData(message.author.id, message.guild.id)
 
         if (!userData || userData == null || userData == undefined) {
             await Gloasty.user.createUser(message.author.id, message.guild.id)
