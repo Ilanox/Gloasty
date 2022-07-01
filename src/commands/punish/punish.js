@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const Gloasty = require("../../../gloasty.js")
 const UserSc = require('../../Schema/user.js')
-const punishUser = require('../../utils/punishUser.js')
+const punishUser = require('../../utils/punish/punishUser.js')
 const GuildSc = require('../../Schema/settings.js')
 const { Permissions, MessageEmbed } = require("discord.js")
 

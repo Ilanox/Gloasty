@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const RankingSystem = require('../../utils/RankingFunctions.js')
+const Gloasty = require('../../../gloasty')
 const UserSc = require('../../Schema/user.js')
 
 module.exports = {
@@ -15,28 +15,24 @@ module.exports = {
         if (message.author.bot) return
         if (message.channel.type == "dm") return
 
-        var userData;
+        var userData = Gloasty.user.getUserData(message.author.id, message.guild.id)
 
-        await UserSc.findOne({ UserID: message.author.id, GuildID: message.guild.id }, async function (err, docs) {
-
-            if (!docs || docs == null || docs == undefined) {
-                await RankingSystem.createUser(message.author.id, message.guild.id)
-                userData = { GuildID: interaction.guild.id, UserID: MemberID, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
-            }
-            userData = docs
-        });
+        if (!userData || userData == null || userData == undefined) {
+            await Gloasty.user.createUser(message.author.id, message.guild.id)
+            userData = Gloasty.user.getDefaultData(message.author.id, message.guild.id)
+        }
 
         if(userData == undefined || userData == null) return;
 
-        if(RankingSystem.CheckIfGettingStar(userData.Level)) {
-            await RankingSystem.AddStars(message.author.id, message.guild.id, 1)
+        if(Gloasty.ranking.checkIfGettingStar(userData.Level)) {
+            await Gloasty.ranking.addStars(message.author.id, message.guild.id, 1)
             console.log("Star added to " + message.author.tag)
         }
 
-        if(userData.TotalStars >= RankingSystem.getMaxStarsNextLevel(userData.Level)) {
+        if(userData.TotalStars >= Gloasty.ranking.getMaxStars(userData.Level)) {
             
-            await RankingSystem.AddLevel(message.author.id, message.guild.id)
-            await RankingSystem.RemoveStars(message.author.id, message.guild.id, userData.Stars)
+            await Gloasty.ranking.addLevel(message.author.id, message.guild.id)
+            await Gloasty.ranking.removeStars(message.author.id, message.guild.id, userData.Stars)
             message.reply(`עלית לרמה ${userData.Level + 1}! יש לך עכשיו **${userData.StoreStars}** ⭐ לבזבוז בחנות!`)
 
         }

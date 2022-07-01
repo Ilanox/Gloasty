@@ -1,6 +1,4 @@
-const Discord = require('discord.js');
-
-const RankingSystem = require('../../utils/RankingFunctions.js');
+const Gloasty = require('../../../gloasty')
 
 module.exports = {
     name: 'voiceStateUpdate',
@@ -9,16 +7,11 @@ module.exports = {
         const oldVoiceChannel = oldVoiceStateMember.channelId;
         const newVoiceChannel = newVoiceStateMember.channelId;
 
-        function checkVoiceChannel(voiceChannel) {
-            if (voiceChannel == null || voiceChannel == undefined) return false;
-            return true;
-        }
+        if((!Gloasty.ranking.voice.checkVoiceChannel(oldVoiceChannel)) && (Gloasty.ranking.voice.checkVoiceChannel(newVoiceChannel))) Gloasty.ranking.voice.addToVoiceList(newVoiceStateMember.id, newVoiceStateMember.guild.id);
 
-        if((!checkVoiceChannel(oldVoiceChannel)) && (checkVoiceChannel(newVoiceChannel))) RankingSystem.addToVoiceList(newVoiceStateMember.id, newVoiceStateMember.guild.id);
+        if((Gloasty.ranking.voice.checkVoiceChannel(oldVoiceChannel)) && (!Gloasty.ranking.voice.checkVoiceChannel(newVoiceChannel))) Gloasty.ranking.voice.removeFromVoiceList(oldVoiceStateMember.id, oldVoiceStateMember.guild.id);
 
-        if((checkVoiceChannel(oldVoiceChannel)) && (!checkVoiceChannel(newVoiceChannel))) RankingSystem.removeFromVoiceList(oldVoiceStateMember.id, oldVoiceStateMember.guild.id);
-
-        if(((checkVoiceChannel(oldVoiceChannel)) && (checkVoiceChannel(newVoiceChannel))) && !RankingSystem.getVoiceList().has(newVoiceStateMember.id)) RankingSystem.addToVoiceList(newVoiceStateMember.id, newVoiceStateMember.guild.id);
+        if(((Gloasty.ranking.voice.checkVoiceChannel(oldVoiceChannel)) && (Gloasty.ranking.voice.checkVoiceChannel(newVoiceChannel))) && !Gloasty.ranking.voice.getVoiceList().has(newVoiceStateMember.id)) Gloasty.ranking.voice.addToVoiceList(newVoiceStateMember.id, newVoiceStateMember.guild.id);
 
     }
 }

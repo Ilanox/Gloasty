@@ -1,15 +1,8 @@
 const Discord = require('discord.js');
 const { Image, createCanvas, loadImage, registerFont } = require('canvas');
-const RankingSystem = require('../../utils/RankingFunctions');
 const path = require('path');
-const fs = require('fs')
-const request = require('request');
 const UserSc = require('../../Schema/user.js')
 const Gloasty = require('../../../gloasty.js')
-
-async function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 module.exports = {
 	name: "rank",
@@ -53,7 +46,7 @@ module.exports = {
 
             var user = client.users.cache.get(MemberID);
 
-            const ImagePath = await RankingSystem.getImagePath(MemberID, interaction.guild.id)
+            const ImagePath = await Gloasty.ranking.canvas.getImagePath(MemberID, interaction.guild.id)
 
             const canvas = createCanvas(2024, 693);
             const ctx = canvas.getContext('2d')
@@ -86,7 +79,7 @@ module.exports = {
 
             // -=-=-=-=-=-=-=-=-=-=-=-= | Rank TEXT | =-=-=-=-=-=-=-=-=-=-=-=-
 
-            var Rank = "#" + await RankingSystem.FindPositionByStars(MemberID, interaction.guild.id)
+            var Rank = "#" + await Gloasty.ranking.canvas.findPositionByStars(MemberID, interaction.guild.id)
 
             ctx.font = "62px OpenSans-ExtraBold";
             ctx.fillStyle = "#AEAEAE";

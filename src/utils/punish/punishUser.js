@@ -1,5 +1,5 @@
     
-const Gloasty = require('../../gloasty')
+const Gloasty = require('../../../gloasty')
 
 module.exports = async function (user, guild, rule) {
 

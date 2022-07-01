@@ -1,12 +1,4 @@
-const Discord = require('discord.js');
-
-const RankingSystem = require('../../utils/RankingFunctions.js');
-const UserSc = require('../../Schema/user.js');
 const Gloasty = require('../../../gloasty.js');
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 module.exports = {
     name: 'ready',
@@ -14,41 +6,39 @@ module.exports = {
 
         while(true) {
 
-            const VoiceList = RankingSystem.getVoiceList();
+            const VoiceList = Gloasty.ranking.voice.getVoiceList();
 
             for (const i of VoiceList) {
 
                 const VoiceMember = client.guilds.cache.get(i[1]).members.cache.get(i[0]);
 
-                if(RankingSystem.checkIfEligibleForStar(VoiceMember)) {
+                if(Gloasty.ranking.voice.checkIfEligibleForStar(VoiceMember)) {
 
-                    var userData;
+                    var userData = Gloasty.user.getUserData(VoiceMember.user.id, VoiceMember.guild.id)
 
-                    await UserSc.findOne({ UserID: VoiceMember.user.id, GuildID: VoiceMember.guild.id }, async function (err, docs) {
-
-                        if (!docs || docs == null || docs == undefined) {
-                            await RankingSystem.createUser(VoiceMember.user.id, VoiceMember.guild.id)
-                            userData = { GuildID: VoiceMember.guild.id, UserID: VoiceMember.id, Stars: 0, Level: 1, Warns: new Map(), Punishes: new Map(), TotalStars: 0, StoreStars: 0 }
-                        }
-                        userData = docs
-                    });
+                    if (!userData || userData == null || userData == undefined) {
+                        await Gloasty.user.createUser(VoiceMember.user.id, VoiceMember.guild.id)
+                        userData = Gloasty.user.getDefaultData(VoiceMember.user.id, VoiceMember.guild.id)
+                    }
 
                     if(userData == undefined || userData == null) return;
 
-                    if(RankingSystem.CheckIfGettingStar(userData.Level)) {
-                        await RankingSystem.AddStars(VoiceMember.user.id, VoiceMember.guild.id, 1)
+                    if(Gloasty.ranking.checkIfGettingStar(userData.Level)) {
+                        await Gloasty.ranking.addStars(VoiceMember.user.id, VoiceMember.guild.id, 1)
                         console.log("Star added to " + VoiceMember.user.tag)
                     }
             
-                    if(userData.TotalStars >= RankingSystem.getMaxStarsNextLevel(userData.Level)) {
-                        await RankingSystem.RemoveStars(message.author.id, message.guild.id, userData.Stars)
-                        await RankingSystem.AddLevel(VoiceMember.user.id, VoiceMember.guild.id)
+                    console.log("Max Stars for next level for " + VoiceMember.user.tag + " is: " + Gloasty.ranking.getMaxStars(userData.Level))
+
+                    if(userData.TotalStars >= Gloasty.ranking.getMaxStars(userData.Level)) {
+                        await Gloasty.ranking.removeStars(VoiceMember.user.id, VoiceMember.guild.id, userData.Stars)
+                        await Gloasty.ranking.addLevel(VoiceMember.user.id, VoiceMember.guild.id)
                     }
                     
                 }
 
             }
-            await sleep(5000);
+            await Gloasty.utilities.sleep(15000);
 
         }
 
