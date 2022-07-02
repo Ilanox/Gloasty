@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const Gloasty = require('../../../gloasty')
-const UserSc = require('../../Schema/user.js')
+const userSc = require('../../schema/user.js')
 
 module.exports = {
     name: 'messageCreate',

@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const settings = require('../../Schema/settings.js')
+const settings = require('../../schema/guilds.js')
 const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('../../../config.json');
 
 module.exports = {

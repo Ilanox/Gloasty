@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const settings = require('../../Schema/settings.js')
+const settings = require('../../schema/guilds.js')
 
 module.exports = {
 	name: 'guildDelete',
