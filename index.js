@@ -84,7 +84,6 @@ client.on("ready", async () => {
       commands.push(c)
     }
 
-      client.guilds.cache.get(testGuild).commands.set([]);
       client.application.commands.set(commands)
   
     client.user.setActivity("Gloasty | by Edvin Studios | Type /help");
