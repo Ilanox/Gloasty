@@ -1,13 +1,14 @@
 const Discord = require('discord.js')
 const {readdirSync} = require('fs');
 const mongoose = require('mongoose')
+const Gloasty = require('./gloasty')
 const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('./config.json');
 
 const client = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
 
 const commandMap = {}
 
-
+module.exports = { client }
 
 function getRandomInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
@@ -15,12 +16,12 @@ function getRandomInt(min, max) {
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-readdirSync("./events/").forEach(dir => {
+readdirSync("./src/events/").forEach(dir => {
       
-  const eventFiles = readdirSync(`./events/${dir}/`).filter(file => file.endsWith(".js"));
+  const eventFiles = readdirSync(`./src/events/${dir}/`).filter(file => file.endsWith(".js"));
 
 for (const file of eventFiles) {
-  const event = require(`./events/${dir}/${file}`);
+  const event = require(`./src/events/${dir}/${file}`);
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args, client));
   } else {  
@@ -73,22 +74,19 @@ client.on("ready", async () => {
   
   // -----------------------------------------------------------------------------------------------------
   
+    let commands = []
+
+    const commandFiles = readdirSync('./src/commands').filter(file => file.endsWith('.js'));
+
+    for (let file of commandFiles) {
+      let c = require(`./src/commands/${file}`)
+      commandMap[c.name] = c
+      commands.push(c)
+    }
+
+      client.application.commands.set(commands)
   
-    let commandss = []
-  
-    readdirSync("./commands/").forEach(dir => {
-      
-      const commandFiles = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith(".js"));
-  
-      for (let file of commandFiles) {
-        let c = require(`./commands/${dir}/${file}`)
-        commandMap[c.name] = c
-        commandss.push(c)
-      }
-      client.application.commands.set(commandss)
-    });
-  
-    client.user.setActivity("Gloasty | by Edvin Studios");
+    client.user.setActivity("Gloasty | by Edvin Studios | Type /help");
 
 });
 
@@ -105,5 +103,3 @@ client.on('interactionCreate', async (interaction) => {
 })
 
 client.login(token);
-
-module.exports = {client};
