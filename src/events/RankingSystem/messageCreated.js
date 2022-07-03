@@ -32,7 +32,7 @@ module.exports = {
         if(userData.TotalStars >= Gloasty.ranking.getMaxStars(userData.Level)) {
             
             await Gloasty.ranking.addLevel(message.author.id, message.guild.id)
-            await Gloasty.ranking.removeStars(message.author.id, message.guild.id, userData.Stars)
+            await Gloasty.ranking.removeStars(message.author.id, message.guild.id, await Gloasty.ranking.getStars(message.author.id, message.guild.id))
             message.reply(`עלית לרמה ${userData.Level + 1}! יש לך עכשיו **${userData.StoreStars}** ⭐ לבזבוז בחנות!`)
 
         }

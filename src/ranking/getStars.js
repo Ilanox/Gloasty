@@ -1,16 +1,19 @@
 const userSc = require('../schema/user.js')
+const getUserData = require('../user/getUserData')
+const createUser = require('../user/createUser')
+const getDefaultData = require('../user/getDefaultData')
 var path = require("path");
 
 module.exports = async function (user, guild) {
 
-    let data;
-    await userSc.findOne({ UserID: user, GuildID: guild }, function (err, docs) {
-        if (!docs || docs == null || docs == undefined) data = 0;
+    var userData = await getUserData(user, guild);
 
-        var Stars = docs.Stars;
-        data = Stars;
+    if (!userData || userData == null || userData == undefined) {
+        await createUser(user, guild)
+        userData = getDefaultData(user, guild)
+        return;
+    }
 
-    });
-    return data;
+    return userData.Stars
 
 }

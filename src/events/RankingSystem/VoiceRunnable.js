@@ -27,13 +27,9 @@ module.exports = {
                         await Gloasty.ranking.addStars(VoiceMember.user.id, VoiceMember.guild.id, 1)
                         console.log("Star added to " + VoiceMember.user.tag)
                     }
-            
-                    console.log(userData.Level)
-
-                    console.log("Max Stars for next level for " + VoiceMember.user.tag + " is: " + Gloasty.ranking.getMaxStars(userData.Level))
 
                     if(userData.TotalStars >= Gloasty.ranking.getMaxStars(userData.Level)) {
-                        await Gloasty.ranking.removeStars(VoiceMember.user.id, VoiceMember.guild.id, userData.Stars)
+                        await Gloasty.ranking.removeStars(VoiceMember.user.id, VoiceMember.guild.id, await Gloasty.ranking.getStars(message.author.id, message.guild.id))
                         await Gloasty.ranking.addLevel(VoiceMember.user.id, VoiceMember.guild.id)
                     }
                     

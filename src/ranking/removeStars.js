@@ -1,41 +1,50 @@
 const userSc = require('../schema/user.js')
+const getUserData = require('../user/getUserData')
+const createUser = require('../user/createUser')
+const getDefaultData = require('../user/getDefaultData')
 var path = require("path");
 
-module.exports = async function (user, guild, stars) {
+module.exports = async function (user, guild, numberOfStars) {
 
-    await userSc.findOne({ UserID: user, GuildID: guild }, async function (err, docs) {
+    var userData = await getUserData(user, guild);
+
+    if (!userData || userData == null || userData == undefined) {
+        await createUser(user, guild)
+        userData = getDefaultData(user, guild)
+        return;
+    }
         
-        var Stars = docs.Stars;
+    var Stars = userData.Stars;
 
-        Stars = Stars - stars;
+    Stars = Stars - numberOfStars;
 
-        TotalStars = docs.TotalStars;
+    var TotalStars = userData.TotalStars;
 
-        TotalStars = TotalStars - stars;
+    TotalStars = TotalStars - numberOfStars;
 
-        StoreStars = docs.StoreStars;
+    var StoreStars = userData.StoreStars;
 
-        StoreStars = StoreStars - stars;
+    StoreStars = StoreStars - numberOfStars;
 
-        if (Stars < 0) Stars = 0;
+    if (Stars < 0) Stars = 0;
 
-        if (TotalStars < 0) TotalStars = 0;
+    if (TotalStars < 0) TotalStars = 0;
 
-        await userSc.updateOne(
-            { UserID: user},
-            { $set: { Stars: Stars } }
-        )
+    if (StoreStars < 0) StoreStars = 0;
 
-        await userSc.updateOne(
-            { UserID: user},
-            { $set: { TotalStars: TotalStars } }
-        )
+    await userSc.updateOne(
+        { UserID: user},
+        { $set: { Stars: Stars } }
+    )
 
-        await userSc.updateOne(
-            { UserID: user},
-            { $set: { StoreStars: StoreStars } }
-        )
+    await userSc.updateOne(
+        { UserID: user},
+        { $set: { TotalStars: TotalStars } }
+    )
 
-    });
+    await userSc.updateOne(
+        { UserID: user},
+        { $set: { StoreStars: StoreStars } }
+    )
 
 }
