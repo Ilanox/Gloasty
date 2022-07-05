@@ -1,5 +1,5 @@
 const Gloasty = require('../../../gloasty.js');
-const ytdl = require('ytdl-core')
+const { exec } = require('youtube-dl-exec')
 const Voice = require('@discordjs/voice')
 
 module.exports = {
@@ -51,8 +51,8 @@ module.exports = {
 
                 console.log(Gloasty.music.getQueueByGuild(guildID))
 
-                const stream = ytdl(item.SongURL, { filter: 'audioonly' })
-                const resource = Voice.createAudioResource(stream)
+                const stream = exec(item.SongURL, {o: "-", q: "", format: "bestaudio[ext=webm+acodec=opus+asr=48000]/bestaudio", r: "100K"})
+                const resource = Voice.createAudioResource(stream.stdout)
                 player.play(resource)
 
             });
