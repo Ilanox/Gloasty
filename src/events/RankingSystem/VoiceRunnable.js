@@ -1,4 +1,6 @@
 const Gloasty = require('../../../gloasty.js');
+const ytdl = require('ytdl-core')
+const Voice = require('@discordjs/voice')
 
 module.exports = {
     name: 'ready',

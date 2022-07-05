@@ -2,9 +2,12 @@ const Discord = require('discord.js')
 const {readdirSync} = require('fs');
 const mongoose = require('mongoose')
 const Gloasty = require('./gloasty')
-const {mongoPath,token,pkey,botID,testGuild,RadioToken} = require('./config.json');
+const {mongoPath,token,pkey,botID,testGuild,RadioToken,Music1Token,Music2Token} = require('./config.json');
 
 const client = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
+
+const Music1 = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
+const Music2 = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
 
 const commandMap = {}
 
@@ -23,9 +26,9 @@ readdirSync("./src/events/").forEach(dir => {
 for (const file of eventFiles) {
   const event = require(`./src/events/${dir}/${file}`);
   if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args, client));
+    client.once(event.name, (...args) => event.execute(...args, client, Music1, Music2));
   } else {  
-    client.on(event.name, (...args) => event.execute(...args, client));
+    client.on(event.name, (...args) => event.execute(...args, client, Music1, Music2));
   }
 }
 })
@@ -103,3 +106,5 @@ client.on('interactionCreate', async (interaction) => {
 })
 
 client.login(token);
+Music1.login(Music1Token)
+Music2.login(Music2Token)

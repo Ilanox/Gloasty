@@ -14,7 +14,7 @@ module.exports = {
             description: "Who is the user you want to check? (optional)",
             type: "USER",
             required: false
-    }
+        }
 ],
 
     run: async (interaction, client) => {
