@@ -11,7 +11,7 @@ module.exports = {
         if (NewM == OldM) return
         if (message.content.length > 500) NewM = message.content.substring(0,500) + "..."
         if (OldMessage.content.length > 500) OldM = OldMessage.content.substring(0,500) + "..."
-        const messageUpdate = new Discord.MessageEmbed()
+        const messageUpdate = new Discord.EmbedBuilder()
         .setColor('BLURPLE')
         .setAuthor(message.author.username + "#" + message.author.discriminator, message.author.displayAvatarURL())
         .setDescription(

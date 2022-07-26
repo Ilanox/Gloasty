@@ -1,5 +1,4 @@
 const userSc = require('../../schema/user.js')
-var path = require("path");
 
 module.exports = async function (user, guild) {
 

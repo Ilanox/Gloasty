@@ -1,3 +1,4 @@
+const { ApplicationCommandOptionType } = require("discord.js");
 const Discord = require("discord.js");
 const Gloasty = require('../../gloasty')
 
@@ -9,7 +10,7 @@ module.exports = {
         {
             name: "query",
             description: "Enter song name or url",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             required: true
         }
     ],

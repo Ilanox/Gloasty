@@ -1,6 +1,3 @@
-const userSc = require('../../schema/user.js')
-var path = require("path");
-
 module.exports = function (VoiceMember) {
 
     var MembersInVoice = 0;

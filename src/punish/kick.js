@@ -1,4 +1,3 @@
-const userSc = require('../schema/user.js')
 const main = require('../../index')
 
 

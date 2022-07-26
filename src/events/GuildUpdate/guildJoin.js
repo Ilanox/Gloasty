@@ -32,7 +32,7 @@ module.exports = {
 
             console.log("\n-----------------------\n")
 
-            const embed = new Discord.MessageEmbed()
+            const embed = new Discord.EmbedBuilder()
             .setColor("BLURPLE")
             .setThumbnail(guild.iconURL({ dynamic: true }))
             .setTitle("Server info")
