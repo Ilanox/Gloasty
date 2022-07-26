@@ -3,7 +3,7 @@ const Gloasty = require("../../gloasty.js")
 const userSc = require('../schema/user.js')
 const punishUser = require('../punish/punishUser.js')
 const GuildSc = require('../schema/guilds.js')
-const { Permissions, MessageEmbed } = require("discord.js")
+const { Permissions, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js")
 
 module.exports = {
 	name: "punish",
@@ -13,7 +13,7 @@ module.exports = {
         {
             name: "rule",
             description: "What do you want to punish the user for?",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [
                 {
                     name: "Spam",
@@ -95,7 +95,7 @@ module.exports = {
             content: `> המשתמש <@${interaction.user.id}> העניש את <@${user}> על ${punishInfo.reason}, מהסיבה "**${reason}**", המשתמש הוענש על ${punishInfo.reason} בדרגה **${punishInfo.level}**`
         })
 
-        const punishEmbed = new MessageEmbed()
+        const punishEmbed = new Discord.EmbedBuilder()
         .setColor('DARK_RED')
         .setTitle('Punish By ' + interaction.user.tag)
         .setDescription(`__Punished:__ **<@${user}>**\n__Reason:__ **${reason}**\n__Rule:__ **${rule.charAt(0).toUpperCase() + rule.slice(1)}**\n__Punish level:__ **${punishInfo.level}**`)

@@ -1,13 +1,13 @@
+const { GatewayIntentBits, InteractionType } = require('discord.js');
 const Discord = require('discord.js')
 const {readdirSync} = require('fs');
 const mongoose = require('mongoose')
-const Gloasty = require('./gloasty')
 const {mongoPath,token,pkey,botID,testGuild,RadioToken,Music1Token,Music2Token} = require('./config.json');
 
-const client = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
+const client = new Discord.Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildEmojisAndStickers], partials: [Discord.Partials.GuildMember] });
 
-const Music1 = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
-const Music2 = new Discord.Client({intents: [ 'GUILD_VOICE_STATES', 'GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILD_MEMBERS', 'GUILD_EMOJIS_AND_STICKERS'], partials: ['GUILD_MEMBER']});
+const Music1 = new Discord.Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildEmojisAndStickers], partials: [Discord.Partials.GuildMember] });
+const Music2 = new Discord.Client({ intents: [GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildEmojisAndStickers], partials: [Discord.Partials.GuildMember] });
 
 const commandMap = {}
 
@@ -96,7 +96,7 @@ client.on("ready", async () => {
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isSelectMenu()) {
     return
-  } else if (interaction.isCommand()) {
+  } else if (interaction.type === InteractionType.ApplicationCommand) {
 
     let cmd = commandMap[interaction.commandName]
     if (cmd) {

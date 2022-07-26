@@ -6,7 +6,7 @@ module.exports = {
 	async execute(message, client) {
         const info = await settings.find({ GuildID: message.guild.id });
         if (info == null || info[0] == null || info[0].LogsChannel == "None" || info[0].LogsChannel == null) return
-        const messageDelete = new Discord.MessageEmbed()
+        const messageDelete = new Discord.EmbedBuilder()
         .setColor('RED')
         .setAuthor(message.author.username + "#" + message.author.discriminator, message.author.displayAvatarURL())
         .setDescription(

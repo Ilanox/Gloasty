@@ -1,4 +1,4 @@
-const {MessageButton,MessageEmbed,MessageSelectMenu,DiscordAPIError} = require("discord.js");
+const {MessageButton,EmbedBuilder,MessageSelectMenu,DiscordAPIError, ApplicationCommandOptionType} = require("discord.js");
 const Discord = require("discord.js")
 const fetch = require('node-fetch')
 
@@ -11,7 +11,7 @@ module.exports = {
         {
             name: "activity",
             description: "What game whould you like to play?",
-            type: "STRING",
+            type: ApplicationCommandOptionType.String,
             choices: [
                 {
                     name: "Watch together",
@@ -109,7 +109,7 @@ module.exports = {
 			.then(res => res.json())
 			.then(async invite => {
 				if (!invite.code) return interaction.reply("Something went wrong!")
-				const e = new MessageEmbed()
+				const e = new EmbedBuilder()
                     .setTitle("Activity is Ready!")
 					.setDescription(`[Click here to Play the Activity in #${channel.name}](https://discord.com/invite/${invite.code})`)
 				interaction.reply({

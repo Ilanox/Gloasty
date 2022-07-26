@@ -7,8 +7,8 @@ module.exports = {
 	options: [],
 	run: async (interaction, client) => {
         const CLientMember = await interaction.guild.members.cache.get(client.user.id)
-        if (!CLientMember.permissions.has(Discord.Permissions.FLAGS.SEND_MESSAGES)) return interaction.reply("Error x403: The client is missing Permissions! Missing: ``SEND_MESSAGE``")
-        const help = new Discord.MessageEmbed()
+        if (!CLientMember.permissions.has(Discord.PermissionsBitField.Flags.SendMessages)) return interaction.reply("Error x403: The client is missing Permissions! Missing: ``SEND_MESSAGE``")
+        const help = new Discord.EmbedBuilder()
         .setColor('RANDOM')
         .setTitle('Gloasty - Info')
         .addFields(

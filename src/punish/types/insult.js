@@ -1,9 +1,4 @@
-const Discord = require("discord.js");
-const Gloasty = require("../../../gloasty.js")
 const userSc = require('../../schema/user.js')
-const GuildSc = require('../../schema/guilds.js')
-const { Permissions, MessageEmbed } = require("discord.js")
-
 const getUserData = require('../../user/getUserData')
 const createUser = require('../../user/createUser')
 const getDefaultData = require('../../user/getDefaultData')

@@ -1,5 +1,4 @@
 const userSc = require('../schema/user.js')
-var path = require("path");
 
 /**
  * @name checkIfUserExists
